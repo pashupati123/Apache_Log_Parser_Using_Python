@@ -9,10 +9,10 @@ def generate_report(report_data):
     Total_request=0
     for data in report_data:
         Total_request+=1
-        if(int(data['log_status'])>=200 and int(data['log_status'])<=300):
+        if(int(data['log_status'])>=200 and int(data['log_status'])<=399):
             successful_status_count+=1
 
-        if(int(data['log_status'])<200 or int(data['log_status'])>300):
+        if(int(data['log_status'])<200 or int(data['log_status'])>=400):
             unsuccessful_status_count+=1
 
         url=data['url'].strip('"')
