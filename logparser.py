@@ -91,5 +91,6 @@ def final_report(filename):
 
 
 if __name__ == '__main__':
-    final_report('/Users/z004lc8/Desktop/LogScrapping/sample_input.log')
+    logfile='/Users/z004lc8/Desktop/LogScrapping/Apache_Log_Parser_Using_Python/sample_input.log'
+    final_report(logfile)
 
