@@ -1,6 +1,7 @@
 from collections import Counter
-
+import simplejson
 def generate_report(report_data):
+    result_ouput = []
     url_lst = []
     unsuccessful_url = []
     most_requested_ip = []
@@ -46,26 +47,32 @@ def generate_report(report_data):
     print("1. Top 10 requested pages and the number of requests made for each")
     print(url_counter.most_common(10))
     print()
+    result_ouput.append(url_counter.most_common(10))
 
     # printing Percentage of successful requests (anything in the 200s and 300s range)
     print("2. Percentage of successful requests (anything in the 200s and 300s range)")
     print((successful_status_count/Total_request)*100)
     print()
+    result_ouput.append((successful_status_count/Total_request)*100)
 
      # printing Percentage of unsuccessful requests (anything that is not in the 200s or 300s range)
     print("3. Percentage of unsuccessful requests (anything that is not in the 200s or 300s range)")
     print((unsuccessful_status_count/Total_request)*100)
     print()
+    result_ouput.append((unsuccessful_status_count/Total_request)*100)
 
     #Printing Top 10 unsuccessful page requests
     print("4. Top 10 unsuccessful page requests")
     print(list_of_unsuccessful_url.most_common(10))
     print()
+    result_ouput.append(list_of_unsuccessful_url.most_common(10))
 
     #Printing The top 10 hosts making the most requests, displaying the IP address and number of requests made.
     print("5. The top 10 hosts making the most requests, displaying the IP address and number of requests made.")
     print(dict_of_most_rquested_ip.most_common(10))
     print()
+    result_ouput.append(dict_of_most_rquested_ip.most_common(10))
+    return result_ouput
 
 
 
@@ -86,11 +93,13 @@ def final_report(filename):
             line_dict = apache_output(line)
             report_data.append(line_dict)
     
-    generate_report(report_data)
-    
+    result_output=generate_report(report_data)
+    return result_output
 
 
 if __name__ == '__main__':
     logfile='/Users/z004lc8/Desktop/LogScrapping/Apache_Log_Parser_Using_Python/sample_input.log'
-    final_report(logfile)
-
+    result_output=final_report(logfile)
+    f = open('result_output.txt', 'w')
+    simplejson.dump(result_output, f)
+    f.close()
