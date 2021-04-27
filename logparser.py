@@ -44,32 +44,49 @@ def generate_report(report_data):
         dict_of_most_rquested_ip[lst]+=1
 
     #Top 10 requested pages and the number of requests made for each
-    print("1. Top 10 requested pages and the number of requests made for each")
-    print(url_counter.most_common(10))
+    print("##############################################################")
+    print("Requirement 1")
+    print("##############################################################")
+    print()
+    top_10_requested_pages = url_counter.most_common(10)
+    for item in top_10_requested_pages:
+        print(item)
     print()
     result_ouput.append(url_counter.most_common(10))
 
     # printing Percentage of successful requests (anything in the 200s and 300s range)
-    print("2. Percentage of successful requests (anything in the 200s and 300s range)")
-    print((successful_status_count/Total_request)*100)
+    print("##############################################################")
+    print("Requirement 2 and 3")
+    print("##############################################################")
+    print()
+    print("Total Request: "+ str(Total_request))
+    print("Successful Request: "+ str(successful_status_count))
+    print("Failure Request: " + str(unsuccessful_status_count))
+    print("Percentage of Successful Request is: " + str(successful_status_count/Total_request*100))
+    print("Percentage of UnSuccessful Request is: " + str(unsuccessful_status_count/Total_request*100))
     print()
     result_ouput.append((successful_status_count/Total_request)*100)
-
-     # printing Percentage of unsuccessful requests (anything that is not in the 200s or 300s range)
-    print("3. Percentage of unsuccessful requests (anything that is not in the 200s or 300s range)")
-    print((unsuccessful_status_count/Total_request)*100)
-    print()
     result_ouput.append((unsuccessful_status_count/Total_request)*100)
 
     #Printing Top 10 unsuccessful page requests
-    print("4. Top 10 unsuccessful page requests")
-    print(list_of_unsuccessful_url.most_common(10))
+    print("##############################################################")
+    print("Requirement 4")
+    print("##############################################################")
+    print()
+    top_10_unsuccessful_url= list_of_unsuccessful_url.most_common(10)
+    for item in top_10_unsuccessful_url:
+        print(item)
     print()
     result_ouput.append(list_of_unsuccessful_url.most_common(10))
 
     #Printing The top 10 hosts making the most requests, displaying the IP address and number of requests made.
-    print("5. The top 10 hosts making the most requests, displaying the IP address and number of requests made.")
-    print(dict_of_most_rquested_ip.most_common(10))
+    print("##############################################################")
+    print("Requirement 5")
+    print("##############################################################")
+    print()
+    top_10_host_making_most_req = dict_of_most_rquested_ip.most_common(10)
+    for item in top_10_host_making_most_req:
+        print(item)
     print()
     result_ouput.append(dict_of_most_rquested_ip.most_common(10))
     return result_ouput
